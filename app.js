@@ -18,60 +18,56 @@
 
 
 angular
-	.module('app', ['ui.router'])
-	.config(['$urlRouterProvider', '$stateProvider', function($urlRouterProvider, $stateProvider){
-		$urlRouterProvider.otherwise('/');
-		
-		$stateProvider
-			.state('home', {
-				url: '/',
-				templateUrl: 'home.htm',
-				controller: 'homeCtrl',
-				data: {
-					pageTitle: 'Welcome to Faiz-ul-Mawaid al-Burhaniya, San Jose'
-				}
+.module('app', ['ui.router', 'ngResource'])
+.config(['$urlRouterProvider', '$stateProvider', function($urlRouterProvider, $stateProvider){
+	$urlRouterProvider.otherwise('/');
+
+	$stateProvider
+	.state('home', {
+		url: '/',
+		templateUrl: 'home.htm',
+		controller: 'homeCtrl',
+		data: {
+			pageTitle: 'Welcome to Faiz-ul-Mawaid al-Burhaniya, San Jose'
+		}
 			}) //home Provider
-			.state('rsvp', {
-				url: '/rsvp',
-				templateUrl: 'rsvp.htm',
-				controller: 'rsvpCtrl',
-				data: {
-					pageTitle: 'rsvp'
-				}
+	.state('rsvp', {
+		url: '/rsvp',
+		templateUrl: 'rsvp.htm',
+		controller: 'rsvpCtrl',
+		data: {
+			pageTitle: 'rsvp'
+		}
 			}) //rsvp Provider
-			.state('pickup', {
-				url: '/pickup',
-				templateUrl: 'pickup.htm',
-				controller: 'pickupCtrl',
-				data: {
-					pageTitle: 'pickup'
-				}
+	.state('pickup', {
+		url: '/pickup',
+		templateUrl: 'pickup.htm',
+		controller: 'pickupCtrl',
+		data: {
+			pageTitle: 'pickup'
+		}
 			}) //pickup Provider
-			.state('admin', {
-				url: '/admin',
-				templateUrl: 'admin.htm',
-				controller: 'adminCtrl',
-				data: {
-					pageTitle: 'admin'
-				}
+	.state('admin', {
+		url: '/admin',
+		templateUrl: 'admin.htm',
+		controller: 'adminCtrl',
+		data: {
+			pageTitle: 'admin'
+		}
 			}) //admin Provider
 
-	}]);
-	
+}]);
+
 //-------------------------------------
 
 angular
-	.module('app')
-	.controller('homeCtrl', ['$scope', function($scope) {
-		$scope.pageTitle = "Welcome HOME";
+.module('app')
+.controller('homeCtrl', ['$scope', 'StaticListsFactory', function($scope, StaticListsFactory) {
+	$scope.pageTitle = "Welcome HOME";
 		//$scope.contacts = ["a", "b", "c"];
-		$scope.contacts = [
-			{name: "Janab Ammar bs Zakiuddin", title:"San Jose Amil", email:"sanjoseamil@alvazarat.org"},
-			{name: "M. Aliasgar Saifee", title:"Treasurer", email:"saifee@gmail.com"},
-			{name: "Shabbir Ghadiali", title:"RSVP Mgmt & Site Admin", email:"shabbirag@gmail.com"},
-			{name: "Faiz-ul-Mawaid al-Burhaniya Committee", title:"General questions", email:"faiz.mawaid.sj@gmail.com"},
-			{name: "Kaizar Sogiawala", title:"Secretary", email:"kaizers@gmail.com"}
-		];
+		$scope.contacts = StaticListsFactory.getContactsList();
+
+		console.log();
 
 	}]);
 
@@ -79,8 +75,53 @@ angular
 //-------------------------------------
 
 angular
-	.module('app')
-	.controller('rsvpCtrl', ['$scope', function($scope) {
-		$scope.pageTitle = "Welcome RSVP";
-		$scope.user = "user";
-	}]);
+.module('app')
+.controller('rsvpCtrl', ['$scope', 'StaticListsFactory', function($scope, StaticListsFactory) {
+	$scope.pageTitle = "Welcome RSVP";
+	$scope.user = "user";
+
+	console.log(StaticListsFactory.getLocationsList());
+}]);
+
+//------------------------------------
+
+angular
+.module('app')
+.factory('StaticListsFactory', ['$resource', function($resource) {
+	var contacts = [
+		{name: "Janab Ammar bs Zakiuddin", title:"San Jose Amil", email:"sanjoseamil@alvazarat.org"},
+		{name: "Faiz-ul-Mawaid al-Burhaniya Committee", title:"General questions", email:"faiz.mawaid.sj@gmail.com"},
+		{name: "M. Aliasgar Saifee", title:"Treasurer", email:"saifee@gmail.com"},
+		{name: "Shabbir Ghadiali", title:"RSVP Mgmt & Site Admin", email:"shabbirag@gmail.com"},
+		{name: "Kaizar Sogiawala", title:"Secretary", email:"kaizers@gmail.com"}
+		]
+
+	var counts = [1, 2, 3]
+
+	var locations = ['Sunnyvale', 'Milpitas', 'Los Gatos', 'Cupertino', 'Masjid' ]
+
+	var mawaidType = ['None', 'Mawaid', 'Miqaat']
+
+	var yesNo = ['Y', 'N']
+
+	return {
+		getContactsList: function() {
+			return contacts
+		},
+		getCountsList: function() {
+			return counts
+		},
+		getLocationsList: function() {
+			return locations
+		}
+	}
+}]);
+
+// angular.module('StaticListsService', ['ngResource'])
+//     .factory('ContactsRes', function ($resource) {
+//         return $resource('contacts.json',
+//         				{ }, 
+//         				{getData: {method:'GET', isArray: true}});
+//     })
+
+//     ;
