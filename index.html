@@ -1,20 +1,20 @@
 <!DOCTYPE html>
 <html  ng-app="app">
 <head>
-<title>SJ Mawaid</title>
-<meta charset="utf-8">
-<!-- <meta name="viewport" content="width=device-width, initial-scale=1"> -->
-<meta name="description" content="">
-<meta name="author" content="Husain Dalal">
+	<title>SJ Mawaid</title>
+	<meta charset="utf-8">
+	<!-- <meta name="viewport" content="width=device-width, initial-scale=1"> -->
+	<meta name="description" content="">
+	<meta name="author" content="Husain Dalal">
 
 	<!-- CSS 
 	<script src="http://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.1/css/bootstrap.min.css" type="text/css"></script>
 	<script src="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.2.0/css/font-awesome.min.css" type="text/css"></script>
 -->
 
-	<link href="css/bootstrap.min.css" rel="stylesheet">
-	<link href="css/font-awesome.min.css" rel="stylesheet" type="text/css">
-	<link href="app.css" rel="stylesheet">
+<link href="css/bootstrap.min.css" rel="stylesheet">
+<link href="css/font-awesome.min.css" rel="stylesheet" type="text/css">
+<link href="app.css" rel="stylesheet">
 
 
 </head>
@@ -23,26 +23,26 @@
 	<header ng-include="'nav.htm'"></header>
 
 	<div class="container">
-		<br>
-		<br>
-		<div class="row">
-			<div class="col-lg-12">
-				<h1 class="page-header">{{pageTitle}}</h1>
-			</div>
-		</div>
 
 		<div ui-view></div>
-	<footer ng-include="'footer.htm'"></footer>
+
+		<footer ng-include="'footer.htm'"></footer>
+
 	</div>
 
 
-   <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.3.5/angular.min.js"></script>
- 	<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.3.5/angular-resource.min.js"></script>
+	<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.3.5/angular.min.js"></script>
+	<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.3.5/angular-resource.min.js"></script>
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 	<script src="http://cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/0.12.0/ui-bootstrap.min.js"></script>
 	<script src="http://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.2.11/angular-ui-router.min.js"></script>
-	<!-- <script src="http://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.1/js/bootstrap.min.js"></script> -->
+	<script src="http://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.1/js/bootstrap.min.js"></script> 
 
 	<script type="text/javascript" src="app.js"></script>
 	
+	<script>
+		$('.collapse').collapse()
+	</script>
+
 </body>
 </html>

@@ -56,6 +56,31 @@ angular
 				}
 			}) //admin Provider
 
-	}])
+	}]);
 	
-	
+//-------------------------------------
+
+angular
+	.module('app')
+	.controller('homeCtrl', ['$scope', function($scope) {
+		$scope.pageTitle = "Welcome HOME";
+		//$scope.contacts = ["a", "b", "c"];
+		$scope.contacts = [
+			{name: "Janab Ammar bs Zakiuddin", title:"San Jose Amil", email:"sanjoseamil@alvazarat.org"},
+			{name: "M. Aliasgar Saifee", title:"Treasurer", email:"saifee@gmail.com"},
+			{name: "Shabbir Ghadiali", title:"RSVP Mgmt & Site Admin", email:"shabbirag@gmail.com"},
+			{name: "Faiz-ul-Mawaid al-Burhaniya Committee", title:"General questions", email:"faiz.mawaid.sj@gmail.com"},
+			{name: "Kaizar Sogiawala", title:"Secretary", email:"kaizers@gmail.com"}
+		];
+
+	}]);
+
+
+//-------------------------------------
+
+angular
+	.module('app')
+	.controller('rsvpCtrl', ['$scope', function($scope) {
+		$scope.pageTitle = "Welcome RSVP";
+		$scope.user = "user";
+	}]);
