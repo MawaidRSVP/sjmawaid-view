@@ -83,6 +83,52 @@ angular
 	console.log(StaticListsFactory.getLocationsList());
 }]);
 
+
+
+//-------------------------------------
+
+angular
+.module('app')
+.controller('pickupCtrl', ['$scope', 'StaticListsFactory', function($scope, StaticListsFactory) {
+	$scope.pageTitle = "Welcome Pickup";
+	$scope.user = "user";
+
+	console.log(StaticListsFactory.getLocationsList());
+}]);
+
+
+
+
+//-------------------------------------
+
+angular
+.module('app')
+.controller('adminCtrl', ['$scope', 'StaticListsFactory', 'AdminFactory', function($scope, StaticListsFactory, AdminFactory) {
+	$scope.pageTitle = "Welcome Admin";
+	$scope.user = "user";
+
+	console.log(AdminFactory.getAdminLines());
+}]);
+
+
+angular
+.module('app')
+.factory('AdminFactory', ['$http', function($http) {
+	var adminLines = [];
+
+	return {
+		getAdminLines: function() {
+			//TODO: check if admin lines already present
+			$http.get('admin.json').success(function(data) {
+		        console.log("success!");
+		        adminLines = data;
+		    });
+		    return adminLines;
+		}
+	}
+}]);
+
+
 //------------------------------------
 
 angular
@@ -113,7 +159,14 @@ angular
 		},
 		getLocationsList: function() {
 			return locations
-		}
+		},
+		getMawaidTypeList: function() {
+			return mawaidType
+		},
+		getYesNoList: function() {
+			return yesNo
+		},
+
 	}
 }]);
 
